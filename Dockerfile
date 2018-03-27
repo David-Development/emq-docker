@@ -90,6 +90,11 @@ RUN set -ex \
     && apk --purge del .build-deps .fetch-deps \
     && rm -rf /var/cache/apk/*
 
+# Add support for setting the timezone
+ENV TZ=Europe/Berlin
+RUN apk add --no-cache tzdata \
+    && rm -rf /var/cache/apk/*
+
 WORKDIR /opt/emqttd
 
 # start emqttd and initial environments
